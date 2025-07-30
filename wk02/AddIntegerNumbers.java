@@ -18,3 +18,5 @@ void testExercise2a() {
    testEqual(addIntegerNumbers(-6, -3), -9, "Special case: Addition of two negative numbers");
 }
 Cichlider
+
+https://github.com/Cichlider/COMP1140
