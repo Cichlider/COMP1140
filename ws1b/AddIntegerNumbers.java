@@ -1,4 +1,9 @@
 import static comp1110.testing.Comp1110Unit.*;
+
+import comp1110.lib.*;
+import static comp1110.lib.Functions.*;
+import static comp1110.testing.Comp1110Unit.*; 
+
 // This function add two interger numbers and return the result.
 int addIntegerNumbers(int a , int b){
     return a + b;
