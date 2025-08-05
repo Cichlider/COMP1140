@@ -61,7 +61,7 @@ void testExercise8() {
     testEqual(rockPaperScissors(RPS.ROCK,RPS.SCISSORS), WLD.WIN, "ROCK/SCISSORS");
     testEqual(rockPaperScissors(RPS.PAPER,RPS.ROCK), WLD.WIN, "PAPER/ROCK");
     testEqual(rockPaperScissors(RPS.PAPER,RPS.PAPER), WLD.DRAW, "PAPER/PAPER");
-    testEqual(rockPaperScissors(RPS.PAPER,RPS.SCISSORS), WLD.LOSE, "PAPER/SCISSORS");
+    testEqual(WLD.LOSE, rockPaperScissors(RPS.PAPER,RPS.SCISSORS), "PAPER/SCISSORS");
     testEqual(rockPaperScissors(RPS.SCISSORS,RPS.ROCK), WLD.LOSE, "SCISSORS/ROCK");
     testEqual(rockPaperScissors(RPS.SCISSORS,RPS.PAPER), WLD.WIN, "SCISSORS/PAPER");
     testEqual(rockPaperScissors(RPS.SCISSORS,RPS.SCISSORS), WLD.DRAW, "SCISSORS/SCISSORS");
