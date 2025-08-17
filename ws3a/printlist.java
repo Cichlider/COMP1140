@@ -38,15 +38,34 @@ ConsList<Integer> removeInteger(ConsList<Integer>lst,int a){
     }
 }
 
+int largestInteger(ConsList<Integer>lst){
+    ConsList<Integer> a = Sort(lst);
+    return Nth(a,Length(a)-1);
+}
+
+boolean allIntegersEqual(ConsList<Integer> lst) {
+    if (IsEmpty(lst)) {
+        return true;
+    } else if (IsEmpty(Rest(lst))) {
+        return true; 
+    } else {
+        return Equals(First(lst),(First(Rest(lst)))) && allIntegersEqual(Rest(lst));
+    }
+}
+
+ConsList<Double> divideByPreviousDoubles(ConsList<Double>lst){
+    if(IsEmpty(lst)){
+        return lst;
+    }else if (Length(lst)==1){
+        return new Nil<Double>();
+    } else {
+        return new Cons<Double>( First(Rest(lst)) / First(lst) , divideByPreviousDoubles(Rest(lst)));
+    }
+}
+
 void main(){
-    ConsList<String> a=MakeList("comp1110","comp1140","comp6710");
-    ConsList<Double> b = MakeList(3.2, 4.5, 7.3);
-    ConsList<Integer> c = MakeList(1,2,3,4);
-    // println(b);
-    // println(firststring(a));
-    // println(lengthDoubles(b));
-    // println(concatenateStrings(a));
-    println(removeInteger(c,5));
+    ConsList<Double> list3 = MakeList(1.0,2.0,3.0,4.0);
+    println(divideByPreviousDoubles(list3));
 }
 
 
