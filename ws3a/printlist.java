@@ -63,9 +63,19 @@ ConsList<Double> divideByPreviousDoubles(ConsList<Double>lst){
     }
 }
 
+ConsList<Integer>multiplyByNextIntegers(ConsList<Integer> lst) {
+    if (IsEmpty(lst)) {
+        return lst;
+    } else if (Length(lst) == 1) {
+        return new Nil<Integer>();
+    } else {
+        return new Cons<Integer>(First(lst) * First(Rest(lst)), multiplyByNextIntegers(Rest(lst)));
+    }
+}
+
 void main(){
-    ConsList<Double> list3 = MakeList(1.0,2.0,3.0,4.0);
-    println(divideByPreviousDoubles(list3));
+    ConsList<Integer> list3 = MakeList(1,2,3,4);
+    println(multiplyByNextIntegers(list3));
 }
 
 
