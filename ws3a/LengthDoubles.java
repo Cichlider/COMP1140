@@ -9,6 +9,7 @@ int lengthDoubles(ConsList<Double> lst){
     };
 }
 
+
 void main(){
     ConsList<Double> a = MakeList(3.2, 4.5, 7.3);
     println(lengthDoubles(a));

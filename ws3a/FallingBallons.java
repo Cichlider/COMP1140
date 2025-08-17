@@ -8,7 +8,7 @@
 
 
 // record Balloon(int x , int y , int speed , Colour color){}
-// record World(List<Balloon> balloons){}
+// record World(ConsList<Balloon> balloons){}
 
 
 
