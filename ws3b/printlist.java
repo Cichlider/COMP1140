@@ -44,41 +44,58 @@ Function<Integer,Integer> composeFunctionsRightToLeft(ConsList <Function<Integer
 }
 
 
-
 Function<Integer,Integer> composeFunctionsLeftToRight(ConsList <Function<Integer,Integer>> lst){
     return Fold ((f,g) -> (x->g.apply(f.apply(x))),x->x,lst);
 }
 
-void main(){
-    Function<Integer, Integer> f1 = x -> x;
-    Function<Integer, Integer> f2 = x -> x + 2;
-    Function<Integer, Integer> f3 = x -> x * x;
-    Function<Integer, Integer> f4 = x -> x - 5;
+// ConsList<Pair<Integer,Integer>> combine(ConsList<Integer> list1,ConsList<Integer> list2){
+//     ConsList<Integer> list3 = Sort(list1);
+//     ConsList<Integer> list4 = Sort(list2);
+//     int len1 = Length(list4);
+//     int len2 = Length(list3);
+//     ConsList<Integer> list5 = concreate(Map(x->BuildList(len1,x),list3));
+//     ConsList<Pair<Integer,Integer>> list6 = Zip(list5,list2);
+//     return list6;
+// }
 
-    // Becomes x -> x
-    ConsList<Function<Integer,Integer>> functions1 = MakeList();
+// ConsList<Integer> 
 
-    // Becomes x -> x*x
-    ConsList<Function<Integer,Integer>> functions2 = MakeList(f3);
-    
-    // Becomes x -> (x+2)^2
-    ConsList<Function<Integer,Integer>> functions3 = MakeList(f2,f3);
-        new Cons(f2, new Cons(f3, new Nil()));
 
-    // Becomes x -> (x+2)^2 - 5
-    ConsList<Function<Integer,Integer>> functions4 = MakeList(f1,f2,f3,f4);
-    
-    ConsList<Integer> numbers = MakeList(-5,-1,0,1,3,5);
+// ConsList<Integer> concreate(ConsList<ConsList<Integer>>lst){
+//     return switch(lst){
+//         case Nil<ConsList<Integer>>() -> new Nil <Integer> ();
+//         case Cons<ConsList<Integer>>(var elem ,var rest) -> Append(elem,concreate(rest));
+//     };
+// }
 
-    ConsList<Integer> result1 = numbers;
-    ConsList<Integer> result2 = MakeList(25,1,0,1,9,25);
-    ConsList<Integer> result3 = MakeList(9,1,4,9,25,49);
-    ConsList<Integer> result4 = MakeList(4,-4,-1,4,20,44);
 
-    testEqual(Map(composeFunctionsRightToLeft(functions1), numbers), result1, "Empty list");
-    testEqual(Map(composeFunctionsRightToLeft(functions2), numbers), result2, "Singleton");
-    testEqual(Map(composeFunctionsRightToLeft(functions3), numbers), result3, "Two functions");
-    testEqual(Map(composeFunctionsRightToLeft(functions4), numbers), result4, "Four functions");
-
+ConsList<Pair<Integer,Integer>> combine(ConsList<Integer> list1, ConsList<Integer> list2) {
+    return switch(list1) {
+        case Nil<Integer>() -> new Nil<Pair<Integer,Integer>>();
+        case Cons<Integer>(var elem, var rest) -> 
+            Append(
+                Map(x -> new Pair<>(elem, x), list2),
+                combine(rest, list2)
+            );
+    };
 }
+
+ConsList<Pair<Integer,Integer>> f(ConsList<Integer> list1, ConsList<Integer> list2){
+    ConsList<Integer> list3 = Sort(list1);
+    ConsList<Integer> list4 = Sort(list2);
+
+    return combine(list3,list4);
+}
+
+
+void main(){
+    int len = 2;
+    ConsList<Integer> a = MakeList(11,5,7);
+    ConsList<Integer> b = MakeList(2,8);
+    println(f(a,b));
+}
+
+
+
+
 
