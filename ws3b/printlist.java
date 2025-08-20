@@ -48,27 +48,45 @@ Function<Integer,Integer> composeFunctionsLeftToRight(ConsList <Function<Integer
     return Fold ((f,g) -> (x->g.apply(f.apply(x))),x->x,lst);
 }
 
-// ConsList<Pair<Integer,Integer>> combine(ConsList<Integer> list1,ConsList<Integer> list2){
-//     ConsList<Integer> list3 = Sort(list1);
-//     ConsList<Integer> list4 = Sort(list2);
-//     int len1 = Length(list4);
-//     int len2 = Length(list3);
-//     ConsList<Integer> list5 = concreate(Map(x->BuildList(len1,x),list3));
-//     ConsList<Pair<Integer,Integer>> list6 = Zip(list5,list2);
-//     return list6;
-// }
-
-// ConsList<Integer> 
 
 
-// ConsList<Integer> concreate(ConsList<ConsList<Integer>>lst){
-//     return switch(lst){
-//         case Nil<ConsList<Integer>>() -> new Nil <Integer> ();
-//         case Cons<ConsList<Integer>>(var elem ,var rest) -> Append(elem,concreate(rest));
-//     };
-// }
+
+/**
+ * 这是第一题
+ * please check ws3a exercise "ConcatenateStrings"
+ * 可以去查看一下 ws3a的练习题 “ConcatenateStrings”
+ * totalLength() Give you a ConsList<String> strings
+ * you need return sum of all strings
+ */
+String totalLength(ConsList<String>lst){
+    return switch(lst){
+        case Nil<String>() -> "";
+        case Cons<String> (var elem,var rest) -> elem + totalLength(rest);
+    };
+}
 
 
+/**
+ * 这是第二题
+ * Average() Give you a ConsList<Integer> numbers.
+ * you need return average of all numbers (return floattype)
+ */
+int sum(ConsList<Integer>list){
+    return switch(list){
+        case Nil<Integer>()-> 0;
+        case Cons<Integer>(var elem,var rest) -> elem+sum(rest);
+    };
+}
+
+/**
+ * 这是第三题
+ * AllPair() Give two ConsList<lnteger>, 
+ * return all Pairof these two lists 
+ * (follow lexicographical order,means need to sort)
+ * Example：
+ *  -Given [11,5,7] ,[2,8]
+ *      -Return [(5,2),(5,8),(7,2),(7,8),(11,2),(11,8)]
+ */
 ConsList<Pair<Integer,Integer>> combine(ConsList<Integer> list1, ConsList<Integer> list2) {
     return switch(list1) {
         case Nil<Integer>() -> new Nil<Pair<Integer,Integer>>();
@@ -80,7 +98,7 @@ ConsList<Pair<Integer,Integer>> combine(ConsList<Integer> list1, ConsList<Intege
     };
 }
 
-ConsList<Pair<Integer,Integer>> f(ConsList<Integer> list1, ConsList<Integer> list2){
+ConsList<Pair<Integer,Integer>> AllPair(ConsList<Integer> list1, ConsList<Integer> list2){
     ConsList<Integer> list3 = Sort(list1);
     ConsList<Integer> list4 = Sort(list2);
 
@@ -88,11 +106,29 @@ ConsList<Pair<Integer,Integer>> f(ConsList<Integer> list1, ConsList<Integer> lis
 }
 
 
+
+
+
+
+float Average(ConsList<Integer>list){
+    int value = sum(list);
+    int len = Length(list);
+    return((float) value/ (float)len);
+}
+
+
+
+
+
+
 void main(){
     int len = 2;
     ConsList<Integer> a = MakeList(11,5,7);
     ConsList<Integer> b = MakeList(2,8);
-    println(f(a,b));
+    ConsList<String> c = MakeList("helloworld","genius","I");
+    println(Average(a));
+    println(totalLength(c));
+    // println(f(a,b));
 }
 
 
