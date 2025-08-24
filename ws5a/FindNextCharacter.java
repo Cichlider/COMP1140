@@ -2,26 +2,28 @@ import comp1110.lib.*;
 import static comp1110.lib.Functions.*;
 import static comp1110.testing.Comp1110Unit.*; 
 
-int findNextCharacter(String s, int index, char c){
-    String b = ToString(c);
-    String a = SubString(s, index + 1, Length(s));
-    if (Contains(a, b)){
-        return (index + 1) + helperf(a, 0, b);
+ConsList<String> f(String s, int index){
+    if(index >= Length(s)){
+        return new Nil<>();
     } else {
-        return -1;
+        return new Cons<>(ToString(GetCharAt(s,index)), f(s,index+1));
     }
 }
-
-int helperf(String a, int n, String b){
-    if(Equals(SubString(a, 0, 1), b)){
-        return n;
-    } else {
-        return helperf(SubString(a, 1, Length(a)), n + 1, b);
-    }
+int g(ConsList<String> lst, int index, int x, char c){
+    return switch(lst){
+        case Nil<String>() -> -1;
+        case Cons<String>(var elem ,var rest) -> 
+            (index > x && Equals(ToString(c),elem)) ? index : g(rest,index+1,x,c);
+    };
 }
 
+int findNextCharacter(String s, int a, char c){
+    ConsList<String> lst = f(s,0);
+    int result = g(lst,0,a,c);
+    return result;
+}
 
-void main() {
+void main(){
     testEqual(findNextCharacter("", 0,'a'), -1, "Edge case: Empty string");
     testEqual(findNextCharacter("k", 0,'b'), -1, "Edge case: Length = 1");
     testEqual(findNextCharacter("c",0,'c'), -1, "Edge case: Length = 1 and character present");

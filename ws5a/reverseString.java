@@ -10,10 +10,12 @@ ConsList<String> f(String s, int index){
     }
 }
 
-ConsList<Pair<Character,Integer>> g(ConsList<String> lst)
+String reverseString(String s){
+    ConsList<String> lst = f(s,0);
+    return FoldLeft((x,y)-> x+y,"",lst);
+}
 
-
-// ConsList<Pair<Character,Integer>> characterCountCons(String str)
-
-
-
+void main(){
+    String s ="abcd";
+    println(reverseString(s));
+}
