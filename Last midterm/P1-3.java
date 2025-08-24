@@ -26,6 +26,11 @@ int sum(ConsList<Integer>list){
     };
 }
 
+float Average(ConsList<Integer>list){
+    int value = sum(list);
+    int len = Length(list);
+    return((float)value/(float)len);
+}
 /**
  * 这是第三题
  * AllPair() Give two ConsList<lnteger>, 
