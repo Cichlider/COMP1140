@@ -34,3 +34,4 @@ void main(){
     println(findShortest(a));
     println(findShortest(b));
 }
+
