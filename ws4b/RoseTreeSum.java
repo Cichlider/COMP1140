@@ -6,7 +6,6 @@ import static comp1110.testing.Comp1110Unit.*;
 record RoseTree(ConsList<RoseTree> children, int value) {}
 
 int roseTreeSum(RoseTree tree) {
-
     return tree.value() + Sum(Map((x -> roseTreeSum(x)), tree.children()));
 }
 

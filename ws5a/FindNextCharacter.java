@@ -9,6 +9,7 @@ ConsList<String> f(String s, int index){
         return new Cons<>(ToString(GetCharAt(s,index)), f(s,index+1));
     }
 }
+
 int g(ConsList<String> lst, int index, int x, char c){
     return switch(lst){
         case Nil<String>() -> -1;
@@ -37,3 +38,5 @@ void main(){
     testEqual(findNextCharacter("korrho", 1,'o'), 5, "char present at and after index");
     testEqual(findNextCharacter("korrh", 5,'o'), -1, "Edge case: Index is at the end of the string");
 }
+
+

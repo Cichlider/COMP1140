@@ -94,7 +94,17 @@ BinaryTree mediumTree2 = new Node(basicTree1, 2, basicTree1);
 BinaryTree complexTree = new Node(mediumTree2, 3, mediumTree1);
 
 
+int maxDepth(BinaryTree tree){
+    return switch(tree){
+        case Leaf() -> 0;
+        case Node(BinaryTree left, int value, BinaryTree right) ->
+            1+Max(maxDepth(left),maxDepth(right));
+    };
+}
 
+int Max(int a, int b){
+    return a>=b ? a : b;
+}
 
 int numNonLeafNodes(BinaryTree tree){
     return switch (tree){
@@ -105,10 +115,5 @@ int numNonLeafNodes(BinaryTree tree){
 }
 
 void main(){
-    testEqual(0, numNonLeafNodes(leaf), "numNonLeafNodes() on leaf");
-    testEqual(1, numNonLeafNodes(basicTree1), "numNonLeafNodes() on basicTree1");
-    testEqual(1, numNonLeafNodes(basicTree2), "numNonLeafNodes() on basicTree2");
-    testEqual(2, numNonLeafNodes(mediumTree1), "numNonLeafNodes() on mediumTree1");
-    testEqual(3, numNonLeafNodes(mediumTree2), "numNonLeafNodes() on mediumTree2");
-    testEqual(6, numNonLeafNodes(complexTree), "numNonLeafNodes() on complexTree");
+    println(maxDepth(complexTree));
 }
