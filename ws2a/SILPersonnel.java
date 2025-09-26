@@ -7,7 +7,7 @@ import static comp1110.testing.Comp1110Unit.*;
 //SILPersonnel.java
 
 /**
- * The SIL offers the following four world's finest degrees:
+ * T·he SIL offers the following four world's finest degrees:
  * Doctorate of Ideological Purity (DIP)
  * Master of Chancellor Thorne Thought (MCTT)
  * Bachelor of Unified Principles (BUP)
@@ -24,7 +24,7 @@ enum Degree{
 //     return switch(Degree){
 //             case DIP -> ...;
 //             case MCTT -> ...;
-//             case BUP -> ...;
+//             case BUP -> ...;·
 //             case BFOOD -> ...
 //         }...;
 // }

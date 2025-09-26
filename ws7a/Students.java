@@ -1,17 +1,5 @@
-class ConsList<T>{
-    private T head;
-    private ConsList<T> tail;
+import comp1110.lib.*;
+import static comp1110.lib.Functions.*;
+import static comp1110.testing.Comp1110Unit.*;
 
 
-    private ConsList(){
-        this.head = null;
-        this.tail = null;
-    }
-
-    private ConsList(T head, ConsList<T> tail){
-        this.head = head;
-        this.tail = tail;
-    }
-
-    public static<T>
-}
